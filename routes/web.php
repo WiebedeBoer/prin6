@@ -18,10 +18,12 @@ Route::get('/', function () {
 
 //login
 Route::get('login', function () {
-    return view('welcome');
+    return view('login');
 });
 
 //register
 Route::get('register', function () {
-    return view('welcome');
+    return view('register');
 });
+
+Route::post('register','RegisterController@registerUser');
