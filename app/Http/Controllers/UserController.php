@@ -16,11 +16,11 @@ class UserController extends Controller
         */
 
         
-        //$new_users = \App\New_User::all();
+        $new_users = \App\New_User::all();
 
-        $new_users = New_User::all();
+        //$new_users = New_User::all();
 
-        dd($new_users);
+        //dd($new_users);
 
         return view('users', ['new_users' =>$new_users,]);
         

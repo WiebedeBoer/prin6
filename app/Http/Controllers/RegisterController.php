@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\New_User;
 
 class RegisterController extends Controller
 {
@@ -10,20 +11,26 @@ class RegisterController extends Controller
     public function registerUser()
     {
         
-        $data = request()->validate(){[
+        $data = request()->validate([
             'username' => 'required|min:3',
-            'password' => 'required|min:6',
+            'password' => 'required|min:6|unique:users',
             'email' => 'required|email'
-        ]};
+        ]);
         
-        dd(request('username'));
+        
+        
+        //dd(request('username'));
+        
 
         
-        $user = new UserTest();
-        $user->username = request('username');
-        $user->password = request('password');
-        $user->email = request('email');
-        $user->save();
+        $newuser = new New_User();
+        
+        //$newuser = \App\New_User();
+        $newuser->username = request('username');
+        $newuser->password = request('password');
+        $newuser->email = request('email');
+        $newuser->save();
+        
         
         return back();
         
