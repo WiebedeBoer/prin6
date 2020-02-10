@@ -17,20 +17,12 @@ class RegisterController extends Controller
             'email' => 'required|email'
         ]);
         
-        
-        
-        //dd(request('username'));
-        
+        $newuser = new New_User();        
 
-        
-        $newuser = new New_User();
-        
-        //$newuser = \App\New_User();
         $newuser->username = request('username');
         $newuser->password = request('password');
         $newuser->email = request('email');
-        $newuser->save();
-        
+        $newuser->save();        
         
         return back();
         
