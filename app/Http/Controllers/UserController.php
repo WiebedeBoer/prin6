@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\New_User;
+use App\Registered_User;
 
 class UserController extends Controller
 {
     //
-    public function list()
-    {       
-
-        $new_users = New_User::all();
-
-        return view('users', ['new_users' =>$new_users,]);
-        
+    public function show()
+    {     
+        $registered_users = Registered_User::all();        
+        return view('users', ['registered_users' =>$registered_users,]); 
     }
 }
