@@ -31,7 +31,7 @@ class ServerController extends Controller
         $server->save();        
      
         //return back();
-        return redirect('servers');
+        return redirect('servers')->with('message', 'Succes');
         
     }
 
@@ -51,7 +51,7 @@ class ServerController extends Controller
     //show server
     public function show($server)
     {             
-        $server = Servers::find($server);        
+        $server = Servers::where('server_id', $server)->firstOrFail();        
         return view('servers.show', compact('server')); 
     }
     

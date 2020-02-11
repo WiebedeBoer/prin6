@@ -23,7 +23,7 @@ class UserController extends Controller
     //show a user
     public function show($registered_user)
     {     
-        $registered_user = Registered_User::find($registered_user);        
+        $registered_user = Registered_User::where('id', $registered_user)->firstOrFail();        
         return view('users.show', compact('registered_user')); 
     }
 }
