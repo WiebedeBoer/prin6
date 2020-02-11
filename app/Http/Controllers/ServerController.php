@@ -7,6 +7,13 @@ use App\Servers;
 
 class ServerController extends Controller
 {
+    
+    //authenticate
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+    }
+    
     //register
     public function store()
     {
@@ -43,9 +50,9 @@ class ServerController extends Controller
 
     //show server
     public function show($server)
-    {       
-        //$servers = Servers::all();
-        //return view('servers.show', ['servers' =>$servers,]);        
+    {             
+        $server = Servers::find($server);        
+        return view('servers.show', compact('server')); 
     }
     
 }

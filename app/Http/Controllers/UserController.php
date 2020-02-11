@@ -7,10 +7,23 @@ use App\Registered_User;
 
 class UserController extends Controller
 {
-    //
-    public function show()
+    //authenticate
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+    }
+    
+    //index show all users
+    public function index()
     {     
         $registered_users = Registered_User::all();        
-        return view('users', ['registered_users' =>$registered_users,]); 
+        return view('users.index', ['registered_users' =>$registered_users,]); 
+    }
+
+    //show a user
+    public function show($registered_user)
+    {     
+        $registered_user = Registered_User::find($registered_user);        
+        return view('users.show', compact('registered_user')); 
     }
 }
