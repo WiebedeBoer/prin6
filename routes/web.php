@@ -11,10 +11,13 @@
 |
 */
 
-//home
+//index welcome
 Route::get('/', function () {
     return view('welcome');
 });
+
+//home
+Route::get('/home', 'HomeController@index')->name('home');
 
 //login
 Route::get('login', function () {
@@ -25,5 +28,17 @@ Route::get('login', function () {
 Route::get('register', function () {
     return view('register');
 });
-
 Route::post('register','RegisterController@registerUser');
+
+//authenticate
+Auth::routes();
+
+//users
+Route::get('users', 'UserController@index');
+Route::get('users/{user}', 'UserController@show');
+
+//servers
+Route::get('servers', 'ServerController@index');
+Route::get('servers/create','ServerController@create');
+Route::post('servers','ServerController@store');
+Route::get('servers/{server}', 'ServerController@show');
