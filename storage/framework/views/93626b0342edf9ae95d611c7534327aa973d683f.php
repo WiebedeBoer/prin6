@@ -3,7 +3,7 @@ Home
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <body>
-        <div class="flex-center position-ref full-height">
+        <!--<div class="flex-center position-ref full-height">
             <?php if(Route::has('login')): ?>
                 <div class="top-right links">
                     <?php if(auth()->guard()->check()): ?>
@@ -16,7 +16,8 @@ Home
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>
-            <?php endif; ?>
+            <?php endif; ?>-->
+        <!--</div>-->
 
             <div class="content">
                 <div class="title m-b-md">
@@ -27,7 +28,7 @@ Home
                 <a href="/">Home</a>
                 <a href="login">Login</a>
                 <a href="register">Registratie</a>
-
+                <a href="users">Gebruikers</a>
                 <!--
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -43,4 +44,4 @@ Home
         </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\wiebe\Documents\stage\laravel\Laravel\resources\views/welcome.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\wiebe\Documents\stage\laravel\Laravel\resources\views/welcome.blade.php ENDPATH**/ ?>
