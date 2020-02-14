@@ -30,6 +30,9 @@ Route::get('register', function () {
 });
 Route::post('register','RegisterController@registerUser');
 
+//logout
+//Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+
 //authenticate
 Auth::routes();
 
@@ -42,3 +45,9 @@ Route::get('servers', 'ServerController@index');
 Route::get('servers/create','ServerController@create');
 Route::post('servers','ServerController@store');
 Route::get('servers/{server}', 'ServerController@show');
+
+//apps
+Route::get('apps', 'AppsController@index');
+Route::get('apps/create','AppsController@create');
+Route::post('apps','AppsController@store');
+Route::get('apps/{apps}', 'AppsController@show');
