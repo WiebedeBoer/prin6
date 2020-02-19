@@ -4,6 +4,9 @@ Applicaties
 @endsection
 @section('content')
 <h1>Applicaties</h1>
+
+<p><a href="/appstatus">App status toevoegen</a></p>
+
 <p>Applicatie Registratie</p>
     @if(session()->has('message'))
         <div class="alert alert-success" role="alert">
@@ -11,35 +14,38 @@ Applicaties
         </div>
     @endif
 <div class="register">
-<form method="POST" action="apps" class="pb-3">
-<p>App naam:</p><div class="input-group"><input type="text" name="app_name" value="{{old('app_name')}}"></div>
-<div>{{$errors->first('app_name')}}</div>
-<p>App status:</p><div class="input-group">
-<select name="app_status">
-<optgroup label="status">
-<option value="active">active</option>
-<option value="phased_out">phased out</option>
-<option value="in preparation">in preparation</option>
-<option value="unknown">unknown</option>
-</select>
-</div>
-<div>{{$errors->first('app_status')}}</div>
-<p>App url:</p><div class="input-group"><input type="text" name="app_url" value="{{old('app_url')}}"></div>
-<div>{{$errors->first('app_url')}}</div>
-<p>App opmerkingen:</p><div class="input-group">
-<textarea id="app_remarks" name="app_remarks" rows="4" cols="50">{{old('app_remarks')}}</textarea>
-</div>
-<div>{{$errors->first('app_remarks')}}</div>
-<input type="submit" value="registreer app">
-@csrf
-</form>
+<p><a href="/apps/create">Voeg app toe</a></p>
 </div>
 <p>Apps</p>
 <div class="apps">
-<ul class="nav navbar-nav">
-    @foreach($apps as $web_app)    
-        <li class="nav-item"><a href="/apps/{{ $web_app->app_id }}">{{ $web_app->app_name }}</a></li>  
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <td>App Details</td>
+          <td>Wijzig</td>
+          <td>Verwijder</td>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach($apps as $web_app) 
+        <tr>   
+        <td><a href="/apps/{{ $web_app->app_id }}">{{ $web_app->app_name }}</a></td> 
+        <td><a href="/apps/{{ $web_app->app_id }}/edit">{{ $web_app->app_name }}</a></td> 
+        <td>
+        <form action="/apps/{{ $web_app->app_id }}" method="post">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-danger" type="submit">Verwijder</button>
+        </form>
+        </td> 
+        </tr>
     @endforeach
-</ul>
+    </tbody>
+</table>
+</div>
+<div class="row">
+<div class="col-12 d-flex justify-content-center pt-5">
+    {{ $apps->links() }}
+</div>
 </div>
 @endsection

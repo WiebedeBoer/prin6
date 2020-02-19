@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Servers;
+use App\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class ServerController extends Controller
 {
@@ -14,7 +16,7 @@ class ServerController extends Controller
         $this->middleware('auth')->except(['index']);
     }
     
-    //register
+    //store function
     public function store()
     {
         
@@ -31,20 +33,42 @@ class ServerController extends Controller
         $server->save();        
      
         //return back();
-        return redirect('servers')->with('message', 'Succes');
+        return redirect('/servers')->with('message', 'Succesvol toegevoegd');
         
     }
 
-    //create
+    //create view
     public function create()
     {      
-        return view('servers.create');        
+        $server = new Servers();
+        return view('servers.create', compact('server'));        
+    }
+
+    //update function
+    public function update(Request $request, $id)
+    {
+        $data = $request->validate([
+            'server_name' => 'required|min:3',
+            'server_type' => 'required|min:3',
+            'server_otap' => 'required|min:3'            
+        ]);
+        Servers::where('server_id', $id)->update($data);
+
+        return redirect('/servers')->with('message', 'Succesvol gewijzigd');
+    }
+
+    //edit view
+    public function edit($server)
+    {      
+        $server = Servers::where('server_id', $server)->firstOrFail();        
+        return view('servers.edit', compact('server'));       
     }
 
     //server list
     public function index()
     {       
-        $servers = Servers::all();
+        //$servers = Servers::all()->paginate(25);
+        $servers = DB::table('servers')->paginate(25);
         return view('servers.index', ['servers' =>$servers,]);        
     }
 
@@ -53,6 +77,15 @@ class ServerController extends Controller
     {             
         $server = Servers::where('server_id', $server)->firstOrFail();        
         return view('servers.show', compact('server')); 
+    }
+
+    //delete server function
+    public function destroy($id)
+    {
+        $server = Servers::findOrFail($id);
+        $server->delete();
+    
+        return redirect('/servers')->with('message', 'Succesvol verwijderd');
     }
     
 }

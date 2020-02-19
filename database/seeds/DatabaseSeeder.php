@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,21 +14,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        //$this->call(UsersTableSeeder::class);
 
+        /*
         DB::table('apps')->insert([
             'app_name' => 'Pure',
-            'app_status' => 'active',
+            'app_status' => '1',
             'app_url' => 'https://pure.rug.nl/admin/',
             'app_remarks' => 'geen opmerkingen'
         ]);
 
         DB::table('apps')->insert([
             'app_name' => 'Digitale Zadenatlas van Nederland',
-            'app_status' => 'active',
+            'app_status' => '1',
             'app_url' => 'http://dzn.eldoc.ub.rug.nl/',
             'app_remarks' => 'geen opmerkingen'
         ]);
+        */
 
         DB::table('servers')->insert([
             'server_name' => 'taske',

@@ -4,6 +4,9 @@ App Details voor {{ $apps->app_name }}
 @endsection
 @section('content')
 <h1>App Details</h1>
+
+<p><a href="/apps/{{ $apps->app_id }}/edit">Wijzig {{ $apps->app_name }}</a></p>
+
 <p>App Details</p>
 <div class="apps">
 <ul class="nav navbar-nav">   

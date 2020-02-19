@@ -18,4 +18,13 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+
+    /**test */
+    public function testLoggedInUnitTest()
+    {
+        $response = $this->get('/apps')->assertRedirect('/login');
+
+        //$response->assertStatus(200);
+    }   
 }
